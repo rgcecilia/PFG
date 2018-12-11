@@ -1,11 +1,11 @@
-drop database if exists usuarios;
+drop database if exists procuradores;
 create database procuradores;
 use procuradores;
 
 create table usuario (
     dni varchar(9) unique primary key not null,
     nombre varchar (50) not null,
-    contraseña varchar(50) not null,
+    pass varchar(50) not null
 );
 
 create table imagenes (
@@ -25,12 +25,14 @@ create table datos (
     texto varchar(50)
 );
 
-insert into usuario values ('15407262E', 'raul');
-insert into usuario values ('11111111A', 'moises');
-insert into usuario values ('22222222B', 'luis');
+insert into usuario values ('15407262E', 'raul', '12345');
+insert into usuario values ('11111111A', 'moises', '12345');
+insert into usuario values ('22222222B', 'luis', '12345');
 insert into textos values('default', 'Sobre Notoros', 'xxx');
 insert into textos values('default', 'Servicios 1', 'xxx');
 insert into textos values('default', 'Servicios 2', 'xxx');
 insert into datos values('default', 'Direccion', 'calle xxx');
 insert into datos values('default', 'email', 'calle xxx');
 insert into datos values('default', 'Telefono', 'calle xxx');
+
+select * from datos
