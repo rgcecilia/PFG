@@ -1,11 +1,18 @@
 
+.adnav{
+ background-color: black;
+}
+.adnav a{
+  font-family: 'arial';
+  color: white;  
+  text-transform: uppercase;
+}
 .cabecera {
   width: 100%;
   height: auto;
   min-height: 100%;
   max-height: 100%;
-  padding: 10rem 0;
-  background: url("../img/principal/imagen1.jpg");
+  padding: 1rem 0;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -48,19 +55,21 @@
   }
   .cabecera h2 {
     max-width: 30rem;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 
 .btn {
   -webkit-box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1) !important;
   box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1) !important;
-  padding: 1.25rem 2rem;
+  padding: 0.5rem 1rem;
   font-family: 'arial';
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: .15rem;
   border: 0;
+  justify-content: center;
+  display: flex;
 }
 
 .btn-primary {
@@ -200,5 +209,9 @@ a:focus, a:hover {
 }
 
 footer {
+  padding: 5rem 0;
+}
+
+.admin {
   padding: 5rem 0;
 }

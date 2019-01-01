@@ -5,34 +5,40 @@ use procuradores;
 create table usuario (
     dni varchar(9) unique primary key not null,
     nombre varchar (50) not null,
-    pass varchar(50) not null
+    pass varchar(10) not null
 );
 
-create table imagenes (
-    identificador int(3) primary key auto_increment,
-    titulo varchar(20),
-    texto varchar(250)
-);
-
-create table textos (
-    identificador int(3) primary key auto_increment,
-    titulo varchar(20),
-    texto varchar(250)
-);
 create table datos (
-    identificador int(3) primary key auto_increment,
-    titulo varchar(20),
-    texto varchar(50)
+    img_inicio varchar(500),
+    titulo_inicio varchar(50),
+    txt_inicio varchar(500),
+    img_nosotros varchar(500),
+    titulo_nosotros varchar(50),
+    txt_nosotros varchar(500),
+    direccion varchar(500),
+    url_direccion varchar (500),
+    email varchar(500),
+    telefono varchar(500),
+    url_linkedin varchar(500),
+    url_facebook varchar(500),
+    url_instagram varchar(500)
 );
 
+create table servicios(
+	id int(3) auto_increment not null primary key,
+    url_imagen varchar(500),
+    txt_titulo varchar(50),
+    txt_texto varchar(500)
+);
+
+insert into servicios values (null,'img/servicios/serv1.jpg','servicio1','texto servicio 1');
+insert into servicios values (null,'img/servicios/serv2.jpg','servicio2','texto servicio 2');
+insert into servicios values (null,'img/servicios/serv1.jpg','servicio3','texto servicio 3');
+insert into servicios values (null,'img/servicios/serv2.jpg','servicio4','texto servicio 4');
+insert into datos values ('img/inicio.jpg','Ladron de Guevara','Procurador','img/nosotros.jpg','Sobre Nosotros','Bla Bla Bla','Calle Barra 13, 2B, 41008, Sevilla','https://www.google.com/maps/place/Calle+Barrau,+11,+41018+Sevilla/@37.3809183,-5.9764598,18z/data=!4m5!3m4!1s0xd126e98900acda7:0xd51ed4a7ac9d6fa3!8m2!3d37.3807295!4d-5.9760695','info@ladrondeguevara.com','954656300/667931775','https://es.linkedin.com/in/raulgutierrezcecilia','https://www.facebook.com/luis.ladrondeguevara.33','https://www.instagram.com/luis_ladron/?hl=es');
 insert into usuario values ('15407262E', 'raul', '12345');
 insert into usuario values ('11111111A', 'moises', '12345');
-insert into usuario values ('22222222B', 'luis', '12345');
-insert into textos values('default', 'Sobre Notoros', 'xxx');
-insert into textos values('default', 'Servicios 1', 'xxx');
-insert into textos values('default', 'Servicios 2', 'xxx');
-insert into datos values('default', 'Direccion', 'calle xxx');
-insert into datos values('default', 'email', 'calle xxx');
-insert into datos values('default', 'Telefono', 'calle xxx');
+insert into usuario values ('30225364Y', 'Luis', '12345');
 
-select * from datos
+select * from datos;
+select * from servicios;
