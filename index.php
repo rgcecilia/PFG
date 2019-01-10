@@ -7,6 +7,7 @@
     $num_filas = mysqli_num_rows($resultado);
     $fila = mysqli_fetch_array($resultado);
     extract($fila);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

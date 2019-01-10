@@ -64,6 +64,13 @@ include("controles.php");
                     <div class="row">
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='POST' action='usuarios_dao.php'>
+                                <?php
+                                    $consulta = "select * from datos;";
+                                    $resultado = mysqli_query($con, $consulta);
+                                    $num_filas = mysqli_num_rows($resultado);
+                                    $fila = mysqli_fetch_array($resultado);
+                                    extract($fila);
+                                ?>
                                 <fieldset>
                                 <legend class="text-center">Crear Usuario</legend>
                                 </br>
