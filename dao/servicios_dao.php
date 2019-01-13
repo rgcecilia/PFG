@@ -1,15 +1,15 @@
 <?php
 
 session_start();
-include("conexion.php");
-include("controles.php");
-
+include("../sesion/conexion.php");
+include("../sesion/controles.php");
+$_SESSION['tab'] = "servicios";
 if(isset($_POST['crear'])){
       
     if($_FILES['imagen']['size']<1 || empty($_POST['titulo']) || empty($_POST['texto'])){
         $_SESSION['mensaje'] = "Faltan datos, servicio no creado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }else{
         // Recibo los datos de la imagen
         $nombre_img = $_FILES['imagen']['name'];
@@ -27,7 +27,7 @@ if(isset($_POST['crear'])){
                 //si no cumple con el formato
                 $_SESSION['mensaje'] = "Formato de imagen de servicio invalido";
                 mysqli_close($con);
-                header("refresh:0, url=administradores.php"); 
+                header("refresh:0, url=../administradores.php"); 
             }
         } 
         
@@ -37,7 +37,7 @@ if(isset($_POST['crear'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Nuevo Servicio Creado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php");      
+        header("refresh:0, url=../administradores.php");      
     }
 }
 
@@ -53,7 +53,7 @@ if(isset($_POST['modificar'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Servicio Actualizado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }           
     
     if($_FILES['imagen']['size']>1){
@@ -74,7 +74,7 @@ if(isset($_POST['modificar'])){
                 //si no cumple con el formato
                 $_SESSION['mensaje'] = "Formato de imagen de servicio invalido";
                 mysqli_close($con);
-                header("refresh:0, url=administradores.php"); 
+                header("refresh:0, url=../administradores.php"); 
             }
         } 
         
@@ -84,7 +84,7 @@ if(isset($_POST['modificar'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Servicio Actualizado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }
 }
 
@@ -95,7 +95,7 @@ if(isset($_POST['eliminar'])){
     $resultado=mysqli_query($con, $consulta);
     $_SESSION['mensaje'] = "Servicio Eliminado";
     mysqli_close($con);
-    header("refresh:0, url=administradores.php");  
+    header("refresh:0, url=../administradores.php");  
     
 }
 

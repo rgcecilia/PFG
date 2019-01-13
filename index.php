@@ -1,13 +1,12 @@
 <?php
 
     session_start();
-    include("conexion.php");
+    include("sesion/conexion.php");
     $consulta = "select * from datos;";
     $resultado = mysqli_query($con, $consulta);
     $num_filas = mysqli_num_rows($resultado);
     $fila = mysqli_fetch_array($resultado);
-    extract($fila);
-    
+    extract($fila);  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     </head>
-    
     <body id="page-top">
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
@@ -126,28 +124,27 @@
                 <div class="mx-auto col-lg-8 col-md-10">
                     <form method='POST' action="send_mail.php">
                         <div class="form-group">
-                            <label for="nombre">Nombre:</label>
+                            <label for="nombre" class="text-white">Nombre:</label>
                             <input type='text' class="form-control" id='nombre' placeholder='Nombre y Apellidos...' name='nombre'>
                         </div>
                         <div class="form-group">
-                            <label for="asunto">Asunto:</label>
+                            <label for="asunto" class="text-white">Asunto:</label>
                             <input type="text" class="form-control" id="asunto" placeholder="Asunto..." name="asunto">
                         </div>
 
                         <div class="form-group">
-                            <label for="pwd">Teléfono:</label>
+                            <label for="pwd" class="text-white">Teléfono:</label>
                             <input type="text" class="form-control" id="telefono" placeholder="Telefono de contacto..." name="telefono">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email" class="text-white">Email:</label>
                             <input type="email" class="form-control" id="email" placeholder="email de contacto..." name="email">
                         </div>
-                        <input type="submit" name="enviar" value="enviar" class="btn btn-primary mx-auto text-center">Enviar</button>
+                        <input type="submit" name="enviar" value="enviar" class="btn btn-primary mx-auto text-center"></button>
                     </form>
                 </div>    
             </div>
-
         </section>
         <hr>    
         <!-- Donde estamos -->
@@ -207,7 +204,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Copyright ---->
         <footer class="bg-black small text-center text-white">
             <div class="container">

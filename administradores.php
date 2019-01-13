@@ -1,12 +1,9 @@
 <?php
-
 session_start();
-include("conexion.php");
-include("controles.php");
-
+include("sesion/conexion.php");
+include("sesion/controles.php");
 ?>
-
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -18,10 +15,16 @@ include("controles.php");
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body id="administracion">
+        <script>
+            var tab = '<?php echo $_SESSION['tab'];?>';
+            $(document).ready(function(){
+                $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            });
+        </script>
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="logout.php">Salir</a>
+                <a class="navbar-brand js-scroll-trigger" href="sesion/logout.php">Salir</a>
                 <button class="navbar-toggler navbar-toggler-right navbar-expand" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -29,7 +32,7 @@ include("controles.php");
                 <div class="navbar-collapse collapse" id="navbarResponsive">
                     <ul class="nav nav-tabs ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" id="bienvenido-tab" data-toggle="tab" href="#bienvenido" role="tab" aria-controls="bienvenido" aria-selected="true">Home</a>
+                            <a class="nav-link" id="bienvenido-tab" data-toggle="tab" href="#bienvenido" role="tab" aria-controls="bienvenido" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
@@ -47,9 +50,8 @@ include("controles.php");
                 </div>
             </div>
         </nav>
-        
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active admin" id="bienvenido" role="tabpanel" aria-labelledby="bienvenido-tab">
+            <div class="tab-pane fade admin" id="bienvenido" role="tabpanel" aria-labelledby="bienvenido-tab">
                 <div class="container">
                     <div class="text-center col-xl-12 col-lg-12">
                         <br/>
@@ -63,7 +65,7 @@ include("controles.php");
                 <div class="container">
                     <div class="row">
                         <div class="form-group col-xl-4 col-lg-4">
-                            <form method='POST' action='usuarios_dao.php'>
+                            <form method='POST' action='dao/usuarios_dao.php'>
                                 <?php
                                     $consulta = "select * from datos;";
                                     $resultado = mysqli_query($con, $consulta);
@@ -88,7 +90,7 @@ include("controles.php");
                             </form>
                         </div>
                         <div class="form-group col-xl-4 col-lg-4">
-                            <form method='post' action='usuarios_dao.php'>
+                            <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
                                 <legend class="text-center">Eliminar Usuario</legend>
                                 </br>
@@ -110,7 +112,7 @@ include("controles.php");
                             </form>
                         </div>
                         <div class="form-group col-xl-4 col-lg-4">
-                            <form method='post' action='usuarios_dao.php'>
+                            <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
                                 <legend class="text-center">Modificar Usuario</legend>
                                 </br>
@@ -145,7 +147,7 @@ include("controles.php");
                     <h2 class="text-center">Contenido</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>            
-                            <form method='post' action='contenido_dao.php' enctype="multipart/form-data">
+                            <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
                                     <legend class="text-center">Inicio</legend>
                                         <label for="titulo">Titulo:</label>
@@ -162,7 +164,7 @@ include("controles.php");
                             </form>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6">
-                            <form method='post' action='contenido_dao.php' enctype="multipart/form-data">
+                            <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
                                     <legend class="text-center">Sobre nosotros</legend>
                                         <label for="titulo">Titulo:</label>
@@ -186,7 +188,7 @@ include("controles.php");
                     <h2 class="text-center">Servicios</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>
-                            <form method='post' action='servicios_dao.php' enctype='multipart/form-data'>
+                            <form method='post' action='dao/servicios_dao.php' enctype='multipart/form-data'>
                                 <fieldset>
                                     <legend class='text-center'>Crear Servicio Nuevo</legend>
                                     <input type='hidden' value='servicios' name='seccion'>
@@ -210,7 +212,7 @@ include("controles.php");
                         while ($fila = mysqli_fetch_array($resultado)) {
                             extract($fila);
                         echo"<div class='form-group col-xl-6 col-lg-6'>";
-                            echo"<form method='post' action='servicios_dao.php' enctype='multipart/form-data'>";
+                            echo"<form method='post' action='dao/servicios_dao.php' enctype='multipart/form-data'>";
                                 echo"<fieldset>";
                                     echo"<legend class='text-center'>Modificar Servicio</legend>";
                                         echo "<input type='hidden' value='$id' name='id'>";
@@ -237,7 +239,7 @@ include("controles.php");
                     <h2 class="text-center">Datos</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>   
-                            <form method='post' action='datos_dao.php'>
+                            <form method='post' action='dao/datos_dao.php'>
                                 <fieldset>
                                     <legend class="text-center">Datos</legend>
                                     <input type='hidden' value='datos' name='seccion'>
@@ -275,10 +277,11 @@ include("controles.php");
             </div>
         </div>
     </body>
-    <script>
-            <?php if($_SESSION['mensaje'] != ""){
-                echo "alert('".$_SESSION['mensaje']."')";
-                $_SESSION['mensaje'] = "";
-            }?>
-        </script>
+    <script> 
+        <?php
+        if($_SESSION['mensaje'] != ""){
+            echo "alert('".$_SESSION['mensaje']."')";
+            $_SESSION['mensaje'] = "";
+        }?>
+    </script>
 </html>

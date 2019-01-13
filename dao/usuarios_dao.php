@@ -1,20 +1,21 @@
 <?php
 
 session_start();
-include("conexion.php");
-include("controles.php");
+include("../sesion/conexion.php");
+include("../sesion/controles.php");
+$_SESSION['tab'] = "usuarios";
  
 if (isset($_POST['crear']) && !empty($_POST['dni']) && !empty($_POST['nombre']) && !empty($_POST['password'])) {
 
     if(9 > strlen($_POST['dni'])) {
         $_SESSION['mensaje'] = "El dni ha de tener 9 digitos";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php");   
+        header("refresh:0, url=../administradores.php");   
     }
     if(5 > strlen($_POST['password'])) {
         $_SESSION['mensaje'] = "La contraseña ha de tener 5 digitos al menos";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php");   
+        header("refresh:0, url=../administradores.php");   
     
     }else{
         $dni = $_POST['dni'];
@@ -26,19 +27,19 @@ if (isset($_POST['crear']) && !empty($_POST['dni']) && !empty($_POST['nombre']) 
         if ($filas == 1) {
             $_SESSION['mensaje'] = "Ya existe un usuario con este DNI";
             mysqli_close($con);
-            header("refresh:0, url=administradores.php");                  
+            header("refresh:0, url=../administradores.php");                  
         } else {
             $consulta = "insert into usuario values('$dni', '$nombre', $password)";
             $resultado = mysqli_query($con, $consulta);
             $_SESSION['mensaje'] = "Usuario creado correctamente";
             mysqli_close($con);
-            header("refresh:0, url=administradores.php");    
+            header("refresh:0, url=../administradores.php");    
         }
     }
 }else if(isset($_POST['crear']) || empty($_POST['dni']) || empty($_POST['nombre']) || empty($_POST['password'])){
     
-    $_SESSION['mensaje'] = "Faltan Datos Usuario no creado";
-    header("refresh:0, url=administradores.php");   
+    $_SESSION['mensaje'] = "Faltan Datos";
+    header("refresh:0, url=../administradores.php");   
 }
 
 if(isset($_POST['eliminar']) && !empty($_POST['dni'])){
@@ -48,7 +49,7 @@ if(isset($_POST['eliminar']) && !empty($_POST['dni'])){
     $resultado = mysqli_query($con, $consulta);
     $_SESSION['mensaje'] = "Usuario Eliminado";
     mysqli_close($con);
-    header("location=administradores.php"); 
+    header("location=../administradores.php"); 
 }
 
 if (isset($_POST['modificar']) && !empty($_POST['dni'])){
@@ -69,7 +70,7 @@ if (isset($_POST['modificar']) && !empty($_POST['dni'])){
     
     $_SESSION['mensaje'] = "Usuario Modificado";
     mysqli_close($con);
-    header("refresh:0, url=administradores.php");   
+    header("refresh:0, url=../administradores.php");   
 }
 
 ?>

@@ -1,9 +1,8 @@
 <?php
-
 session_start();
-include("conexion.php");
-include("controles.php");
-
+include("../sesion/conexion.php");
+include("../sesion/controles.php");
+$_SESSION['tab'] = "datos";
 if(isset($_POST['modificar'])){
     
     $direccion = $_POST['direccion'];
@@ -17,8 +16,8 @@ if(isset($_POST['modificar'])){
     $resultado=mysqli_query($con, $consulta);
     $_SESSION['mensaje'] = "Datos Actualizados";
     mysqli_close($con);
-    header("refresh:0, url=administradores.php"); 
+    header("refresh:0, url=../administradores.php"); 
 }else{
-    header("refresh:0, url=administradores.php"); 
+    header("refresh:0, url=../administradores.php"); 
 }
 

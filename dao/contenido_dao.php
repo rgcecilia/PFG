@@ -1,8 +1,9 @@
 <?php
 
 session_start();
-include("conexion.php");
-include("controles.php");
+include("../sesion/conexion.php");
+include("../sesion/controles.php");
+$_SESSION['tab'] = "contenido";
 
 if(isset($_POST['inicio'])){
        
@@ -13,7 +14,7 @@ if(isset($_POST['inicio'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Inicio Actualizado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }           
     
     if($_FILES['imagen']['size']>1){
@@ -34,7 +35,7 @@ if(isset($_POST['inicio'])){
                 //si no cumple con el formato
                 $_SESSION['mensaje'] = "Formato de imagen de inicio invalido";
                 mysqli_close($con);
-                header("refresh:0, url=administradores.php"); 
+                header("refresh:0, url=../administradores.php"); 
             }
         } 
         
@@ -44,7 +45,7 @@ if(isset($_POST['inicio'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Inicio Actualizado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }
 }
 
@@ -57,7 +58,7 @@ if(isset($_POST['nosotros'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Sobre Nosotros Actualizado";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }           
     
     if($_FILES['imagen']['size']>1){
@@ -78,7 +79,7 @@ if(isset($_POST['nosotros'])){
                 //si no cumple con el formato
                 $_SESSION['mensaje'] = "Formato de imagen de seccion nosotros invalido";
                 mysqli_close($con);
-                header("refresh:0, url=administradores.php"); 
+                header("refresh:0, url=../administradores.php"); 
             }
         } 
         
@@ -88,6 +89,6 @@ if(isset($_POST['nosotros'])){
         $resultado=mysqli_query($con, $consulta);
         $_SESSION['mensaje'] = "Seccion Sobre Nosotros Actualizada";
         mysqli_close($con);
-        header("refresh:0, url=administradores.php"); 
+        header("refresh:0, url=../administradores.php"); 
     }   
 }
