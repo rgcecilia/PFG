@@ -1,21 +1,15 @@
 <?php
-
-    session_start();
-    include("sesion/conexion.php");
-    $consulta = "select * from datos;";
-    $resultado = mysqli_query($con, $consulta);
-    $num_filas = mysqli_num_rows($resultado);
-    $fila = mysqli_fetch_array($resultado);
-    extract($fila);  
+include("sesion/conexion.php");
+$fila = mysqli_fetch_array(mysqli_query($con, "select * from datos;"));
+extract($fila);  
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="Procurador de la propiedad" content="">
-        <meta name="Rgc & Mmp" content="">
-        
+        <meta name="descripcion" content="Procuradores de la propiedad">
+        <meta name="autores" content="Rgc & Mmp">
         <title>Ladron de Guevara</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
@@ -24,11 +18,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     </head>
-    <body id="page-top">
+    <body id="arriba">
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Inicio</a>
+                <a class="navbar-brand js-scroll-trigger" href="#arriba">Inicio</a>
                 <button class="navbar-toggler navbar-toggler-right navbar-expand" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
