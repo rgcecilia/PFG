@@ -130,8 +130,18 @@ a:hover {
 
 /*Moviles*/
 @media (max-width: 992px) {
+    
+.cabecera h1 {
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+  letter-spacing: 0.5rem;
+}
+ .cabecera h2 {
+   max-width: 30rem;
+   font-size: 2rem;
+}
 
-    .tab-content {
+.tab-content {
     padding-top: 1rem;
   }
 }

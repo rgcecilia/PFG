@@ -121,9 +121,9 @@ extract($fila);
         <section id="contacto" class="seccion-mail bg-dark">
             <div class="container">
                 <div class="mx-auto col-lg-8 col-md-10">
-                    <form method='POST' action="send_mail.php">
+                    <form method='POST' action="dao/send_mail.php">
                         <input type="hidden" name="subject" value="Formulario de contacto">
-                        <input type="hidden" name="access" value="irregeheim">
+                        <input type="hidden" name="access" value="ionosmail">
                         <div class="form-group">
                             <label for="nombre" class="text-white">Nombre:</label>
                             <input type='text' class="form-control" id='nombre' placeholder='Nombre y Apellidos...' name='nombre'>

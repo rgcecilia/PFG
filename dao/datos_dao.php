@@ -15,10 +15,10 @@ if(isset($_POST['modificar'])){
     $resultado=mysqli_query($con, $consulta);
     $_SESSION['mensaje'] = "Datos Actualizados";
     mysqli_close($con);
-    header("refresh:0, url=../administradores.php"); 
+    header("location:../administradores.php"); 
     
 }else{
     $_SESSION['mensaje'] = "Datos no actualizados";
-    header("refresh:0, url=../administradores.php"); 
+    header("location:../administradores.php"); 
 }
 ?>
