@@ -2,7 +2,8 @@
     session_start();
     include("conexion.php");
     if(empty($_POST['dni']) || empty($_POST['password'])){
-       header("location:../login.php");
+       $_SESSION['mensaje'] = "Debes Rellenar Todos los datos de acceso";
+       header("Location:../login.php");
     }
     $identificador = $_POST['dni'];
     $password = $_POST['password'];
@@ -11,14 +12,16 @@
     $num_filas = mysqli_num_rows($resultado);
 
     if($num_filas == 0){
-        header("location:../login.php");	
+        $_SESSION['mensaje'] = "No existe ningun usuario con esas credenciales";
+        header("Location:../login.php");
     }else{       
         $fila = mysqli_fetch_array($resultado);
         extract($fila);
         $_SESSION['user']= $dni;
         $_SESSION['name']= $nombre;
-        $_SESSION['tab']= "#bienvenido";
-        header("location:../administradores.php");
+        $_SESSION['mensaje'] = "";
+        $_SESSION['tab']= "#bienvenido-tab";
+        header("Location:../administradores.php");
     }
     mysqli_close($con);
 ?>

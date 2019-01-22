@@ -2,9 +2,8 @@
 session_start();
 include("../sesion/conexion.php");
 include("../sesion/controles.php");
-$_SESSION['tab'] = "datos";
+$_SESSION['tab'] = "#datos-tab";
 if(isset($_POST['modificar'])){
-    
     $direccion = $_POST['direccion'];
     $url_direccion = $_POST['url_direccion'];
     $email = $_POST['email'];
@@ -17,7 +16,9 @@ if(isset($_POST['modificar'])){
     $_SESSION['mensaje'] = "Datos Actualizados";
     mysqli_close($con);
     header("refresh:0, url=../administradores.php"); 
+    
 }else{
+    $_SESSION['mensaje'] = "Datos no actualizados";
     header("refresh:0, url=../administradores.php"); 
 }
-
+?>

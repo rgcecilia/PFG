@@ -45,4 +45,12 @@ extract($fila);
           </div>
         </header>  
     </body>
+    <script>
+        <?php
+        if ($_SESSION['mensaje'] != "") {
+            echo "alert('" . $_SESSION['mensaje'] . "')";
+            $_SESSION['mensaje'] = "";
+        }
+        ?>
+    </script>
 </html>

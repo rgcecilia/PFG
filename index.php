@@ -23,23 +23,23 @@ extract($fila);
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="#arriba">Inicio</a>
-                <button class="navbar-toggler navbar-toggler-right navbar-expand" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-toggler-right navbar-expand text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#nosotros">Sobre Nosotros</a>
+                            <a class="nav-link js-scroll-trigger text-white" href="#nosotros">Sobre Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#servicios">Servicios</a>
+                            <a class="nav-link js-scroll-trigger text-white" href="#servicios">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contacto">Contacto</a>
+                            <a class="nav-link js-scroll-trigger text-white" href="#contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#donde">Donde estamos</a>
+                            <a class="nav-link js-scroll-trigger text-white" href="#donde">Donde estamos</a>
                         </li>
                     </ul>
                 </div>
@@ -52,7 +52,7 @@ extract($fila);
                     <div class="col-xl-6 col-lg-6">
                         <?php
                         echo "<h1 class='text-white text-uppercase'>$titulo_inicio</h1>";
-                        echo "<h2 class='text-white mx-auto'>$txt_inicio</h2>";
+                        echo "<h2 class='text-white'>$txt_inicio</h2>";
                         ?>
                     </div>
                 </div>
@@ -64,10 +64,10 @@ extract($fila);
             <div class="container">
                 <div class="row align-items-center no-gutters mb-4 mb-lg-0">
                     <div class="col-xl-8 col-lg-7">
-                        <img class="img-fluid mb-3" src="<?php echo "$img_nosotros";?>" alt="">
+                        <img class="img-fluid" src="<?php echo "$img_nosotros";?>" alt="">
                     </div>
                     <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
+                        <div class="texto text-center text-lg-left">
                             <?php
                             echo "<h3>$titulo_nosotros</h3>";
                             echo "<p class='text-black mb-0'>$txt_nosotros</p>";
@@ -79,44 +79,51 @@ extract($fila);
         </section>
         <hr>
         <!-- Servicios -->
+        <!-- Seccion de contenido dinamico -->
         <section id="servicios" class="seccion-nosotros bg-light">
             <div class="container">
                 <?php
-                $consulta = "select * from servicios;";
-                $resultado = mysqli_query($con, $consulta);
-                $num_filas = mysqli_num_rows($resultado);
-                $tipo = 1;
-                $lado = "text-lg-left";
-                while ($fila = mysqli_fetch_array($resultado)) {
-                        extract($fila);
-                        if($tipo %2 == 0){
-                            $lado = "text-lg-left";
-                            $orden = "order-lg-first";
-                            $tipo++;
-                        }else{
-                            $lado = "text-lg-right";
-                            $orden = "";
-                            $tipo++;
-                        }              
-                echo "<div class='row align-items-center no-gutters mb-5 mb-lg-0'>";
-                    echo "<div class='col-lg-6'>";
-                        echo "<img class='img-fluid' src='$url_imagen' alt=''>";
-                    echo"</div>";
-                    echo"<div class='col-lg-6 $orden'>";
-                        echo"<div class='bg-dark text-center'>";
-                            echo "<div class='project-text $lado text-center'>";                         
-                                echo "<h4 class='text-white'>$txt_titulo</h4>";
-                                echo "<p class='text-white'>$txt_texto</p>";
-                            echo"</div></div></div></div><hr>";
-                }
+                    $consulta = "select * from servicios;";
+                    $resultado = mysqli_query($con, $consulta);
+                    $num_filas = mysqli_num_rows($resultado);
+                    $tipo = 1;
+                    $lado = "text-lg-left";
+                    while ($fila = mysqli_fetch_array($resultado)) {
+                            extract($fila);
+                            if($tipo %2 == 0){
+                                $lado = "text-lg-left";
+                                $orden = "order-lg-first";
+                                $tipo++;
+                            }else{
+                                $lado = "text-lg-right";
+                                $orden = "";
+                                $tipo++;
+                            }              
+                        echo "<div class='row align-items-center no-gutters mb-5 mb-lg-0'>";
+                        echo "<div class='col-lg-6'>";
+                            echo "<img class='img-fluid' src='$url_imagen' alt=''>";
+                        echo"</div>";
+                        echo"<div class='col-lg-6 $orden'>";
+                            echo"<div class='bg-dark text-center'>";
+                                echo "<div class='texto $lado text-center'>";                         
+                                    echo "<h4 class='text-white'>$txt_titulo</h4>";
+                                    echo "<p class='text-white'>$txt_texto</p>";
+                                echo "</div>"
+                              . "</div>"
+                          . "</div>"
+                        . "</div>"
+                    . "<hr>";
+                    }
                 ?>
         </section>
         <hr>    
         <!-- Contacto -->
-        <section id="contacto" class="signup-section bg-dark">
+        <section id="contacto" class="seccion-mail bg-dark">
             <div class="container">
                 <div class="mx-auto col-lg-8 col-md-10">
                     <form method='POST' action="send_mail.php">
+                        <input type="hidden" name="subject" value="Formulario de contacto">
+                        <input type="hidden" name="access" value="irregeheim">
                         <div class="form-group">
                             <label for="nombre" class="text-white">Nombre:</label>
                             <input type='text' class="form-control" id='nombre' placeholder='Nombre y Apellidos...' name='nombre'>
@@ -125,24 +132,22 @@ extract($fila);
                             <label for="asunto" class="text-white">Asunto:</label>
                             <input type="text" class="form-control" id="asunto" placeholder="Asunto..." name="asunto">
                         </div>
-
                         <div class="form-group">
-                            <label for="pwd" class="text-white">Teléfono:</label>
+                            <label for="telefono" class="text-white">Teléfono:</label>
                             <input type="text" class="form-control" id="telefono" placeholder="Telefono de contacto..." name="telefono">
                         </div>
-
                         <div class="form-group">
                             <label for="email" class="text-white">Email:</label>
                             <input type="email" class="form-control" id="email" placeholder="email de contacto..." name="email">
                         </div>
-                        <input type="submit" name="enviar" value="enviar" class="btn btn-primary mx-auto text-center"></button>
+                        <input type="submit" value="enviar" class="btn btn-primary mx-auto text-center">
                     </form>
                 </div>    
             </div>
         </section>
         <hr>    
         <!-- Donde estamos -->
-        <section class="contact-section bg-black" id="donde">
+        <section class="seccion-contacto bg-black" id="donde">
             <div class="container">
                 <div class="row">
                     <!-- Direccion -->
@@ -151,7 +156,7 @@ extract($fila);
                             <div class="card-body text-center">
                                 <h4 class="text-uppercase m-0">Dirección</h4>
                                 <hr class="my-4">
-                                <div class="small text-black-50">                                  
+                                <div class="small">                                  
                                     <a href= <?php echo "'$url_direccion' target='_blank'>$direccion</a>" ?>                                    
                                 </div>
                             </div>
@@ -184,7 +189,7 @@ extract($fila);
                         </div>
                     </div>
                 </div>
-                <!--Redes Socialies-->
+                <!-- Redes Sociales -->
                 <div class="social d-flex justify-content-center">
                     <a href="<?php echo "$url_linkedin" ?>" target="_blank" class="mx-2">
                         <i class="fab fa-linkedin-in"></i>
@@ -198,10 +203,10 @@ extract($fila);
                 </div>
             </div>
         </section>
-        <!-- Copyright ---->
+        <!-- Linkia FP!!! ---->
         <footer class="bg-black small text-center text-white">
             <div class="container">
-                Copyright &copy; rgcecilia & mmperez 2018
+                PFG DAW Linkia FP 2019 rgcecilia & mmperez 2018
             </div>
         </footer>
         <script src="js/javascript.js"></script>

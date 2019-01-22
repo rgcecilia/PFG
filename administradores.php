@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("sesion/conexion.php");
 include("sesion/controles.php");
+include("sesion/conexion.php");
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -16,16 +16,16 @@ include("sesion/controles.php");
     </head>
     <body id="administracion">
         <script>
-            var tab = '<?php echo $_SESSION['tab'];?>';
-            $(document).ready(function(){
-                $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            var tab = '<?php echo $_SESSION['tab']; ?>';
+            $(document).ready(function () {
+                $('<?php echo $_SESSION['tab']; ?>').trigger('click');
             });
         </script>
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="sesion/logout.php">Salir</a>
-                <button class="navbar-toggler navbar-toggler-right navbar-expand" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-toggler-right navbar-expand text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
@@ -44,7 +44,7 @@ include("sesion/controles.php");
                             <a class="nav-link" id="servicios-tab" data-toggle="tab" href="#servicios" role="tab" aria-controls="servicios" aria-selected="false">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="servicios-tab" data-toggle="tab" href="#datos" role="tab" aria-controls="datos" aria-selected="false">Datos</a>
+                            <a class="nav-link" id="datos-tab" data-toggle="tab" href="#datos" role="tab" aria-controls="datos" aria-selected="false">Datos</a>
                         </li>
                     </ul>
                 </div>
@@ -67,75 +67,74 @@ include("sesion/controles.php");
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='POST' action='dao/usuarios_dao.php'>
                                 <?php
-                                    $consulta = "select * from datos;";
-                                    $resultado = mysqli_query($con, $consulta);
-                                    $num_filas = mysqli_num_rows($resultado);
-                                    $fila = mysqli_fetch_array($resultado);
-                                    extract($fila);
+                                $consultaDatos = "select * from datos;";
+                                $resultadoDatos = mysqli_query($con, $consultaDatos);
+                                $filaDatos = mysqli_fetch_array($resultadoDatos);
+                                extract($filaDatos);
                                 ?>
                                 <fieldset>
-                                <legend class="text-center">Crear Usuario</legend>
-                                </br>
-                                <label for="dni">Dni:</label>
-                                <input class="form-control" type='text' name='dni' maxlength='9' minlength='9' placeholder="Documento nacional de identidad" /> 
-                                </br>
-                                <label for="nombre">Nombre:</label>
-                                <input class="form-control" type='text' name='nombre' maxlength='50' placeholder="Nombre..." /> 
-                                </br>
-                                <label for="password">Password:</label>
-                                <input class="form-control" type='password' name='password' maxlength='50' placeholder="Contraseña..." />
-                                <br/>
-                                <input type="submit" name="crear" value="Crear" class="btn btn-sm btn-primary mx-auto text-center"/>
+                                    <legend class="text-center">Crear Usuario</legend>
+                                    </br>
+                                    <label for="dni">Dni:</label>
+                                    <input class="form-control" type='text' name='dni' maxlength='9' minlength='9' placeholder="Documento nacional de identidad" /> 
+                                    </br>
+                                    <label for="nombre">Nombre:</label>
+                                    <input class="form-control" type='text' name='nombre' maxlength='50' placeholder="Nombre..." /> 
+                                    </br>
+                                    <label for="password">Password:</label>
+                                    <input class="form-control" type='password' name='password' maxlength='50' placeholder="Contraseña..." />
+                                    <br/>
+                                    <input type="submit" name="crear" value="Crear" class="btn btn-sm btn-primary mx-auto text-center"/>
                                 </fieldset>
                             </form>
                         </div>
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
-                                <legend class="text-center">Eliminar Usuario</legend>
-                                </br>
-                                <label for="Usuario">Usuario:</label>
-                                <select name='dni' class='form-control'>
-                                    <option selected="true" disabled="disabled">Seleccion</option>
-                                    <?php
-                                    $consulta = "select dni, nombre from usuario";
-                                    $res = mysqli_query($con, $consulta);
-                                    while ($fila = mysqli_fetch_array($res)) {
-                                        extract($fila);
-                                        echo "<option value='$dni'>$nombre</option>";
-                                    }
-                                    ?>
-                                </select>
-                                </br>
-                                <input type="submit" name="eliminar" value="Eliminar" class="btn btn-sm btn-danger mx-auto text-center"/>
+                                    <legend class="text-center">Eliminar Usuario</legend>
+                                    </br>
+                                    <label for="Usuario">Usuario:</label>
+                                    <select name='dni' class='form-control'>
+                                        <option selected="true" disabled="disabled">Seleccion</option>
+                                        <?php
+                                        $consultaUsuarios = "select dni, nombre from usuario where dni not in('15407262E','30225364Y','72399855H')";
+                                        $resultadoUsuarios = mysqli_query($con, $consultaUsuarios);
+                                        while ($filaUsuarios = mysqli_fetch_array($resultadoUsuarios)) {
+                                            extract($filaUsuarios);
+                                            echo "<option value='$dni'>$nombre</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    </br>
+                                    <input type="submit" name="eliminar" value="Eliminar" class="btn btn-sm btn-danger mx-auto text-center"/>
                                 </fieldset>
                             </form>
                         </div>
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
-                                <legend class="text-center">Modificar Usuario</legend>
-                                </br>
-                                <label for="Usuario">Usuario:</label>
-                                <select name='dni' class='form-control'>
-                                    <option selected="true" disabled="disabled">Seleccion</option>
-                                    <?php
-                                    $consulta = "select dni, nombre from usuario";
-                                    $res = mysqli_query($con, $consulta);
-                                    while ($fila = mysqli_fetch_array($res)) {
-                                        extract($fila);
-                                        echo "<option value='$dni'>$nombre</option>";
-                                    }
-                                    ?>
-                                </select>
-                                </br>
-                                <label for="nombre">Nombre:</label>
-                                <input class='form-control' type='text' name='nombre' maxlength='50' placeholder="Nuevo nombre" />                               
-                                </br>
-                                <label for="password">Password:</label>
-                                <input class='form-control' type='password' name='password' maxlength='50' placeholder="Nuevo pass" />
-                                </br>
-                                <input type="submit" name="modificar" value="Modificar" class="btn btn-sm btn-warning mx-auto text-center"/>
+                                    <legend class="text-center">Modificar Usuario</legend>
+                                    </br>
+                                    <label for="Usuario">Usuario:</label>
+                                    <select name='dni' class='form-control'>
+                                        <option selected="true" disabled="disabled">Seleccion</option>
+                                        <?php     
+                                        $consultaUsuariosModificar = "select dni, nombre from usuario where dni not in('15407262E','30225364Y','72399855H')";
+                                        $resultadoUsuariosModificar = mysqli_query($con, $consultaUsuariosModificar);
+                                        while ($filaUsuariosModificar = mysqli_fetch_array($resultadoUsuariosModificar)) {
+                                            extract($filaUsuariosModificar);
+                                            echo "<option value='$dni'>$nombre</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    </br>
+                                    <label for="nombre">Nombre:</label>
+                                    <input class='form-control' type='text' name='nombre' maxlength='50' placeholder="Nuevo nombre" />                               
+                                    </br>
+                                    <label for="password">Password:</label>
+                                    <input class='form-control' type='password' name='password' maxlength='50' placeholder="Nuevo pass" />
+                                    </br>
+                                    <input type="submit" name="modificar" value="Modificar" class="btn btn-sm btn-warning mx-auto text-center"/>
                                 </fieldset>
                             </form>
                         </div>
@@ -150,16 +149,16 @@ include("sesion/controles.php");
                             <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
                                     <legend class="text-center">Inicio</legend>
-                                        <label for="titulo">Titulo:</label>
-                                        <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_inicio";?>" name="titulo">                  
-                                        </br>
-                                        <label for="texto">Texto:</label>
-                                        <input type="text" class="form-control" id="texto" value="<?php echo "$txt_inicio";?>" name="texto"> 
-                                        </br>
-                                        <label for="imagen">Imagen:</label>
-                                        <input type="file" class="form-control" id="imagen" name="imagen" size="30"/>
-                                        </br>
-                                        <input type="submit" name="inicio" value="Modificar Inicio" class="btn btn-sm btn-primary mx-auto text-center" type="button"/>
+                                    <label for="titulo">Titulo:</label>
+                                    <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_inicio"; ?>" name="titulo">                  
+                                    </br>
+                                    <label for="texto">Texto:</label>
+                                    <input type="text" class="form-control" id="texto" value="<?php echo "$txt_inicio"; ?>" name="texto"> 
+                                    </br>
+                                    <label for="imagen">Imagen:</label>
+                                    <input type="file" class="form-control" id="imagen" name="imagen" size="30"/>
+                                    </br>
+                                    <input type="submit" name="inicio" value="Modificar Inicio" class="btn btn-sm btn-primary mx-auto text-center" type="button"/>
                                 </fieldset>
                             </form>
                         </div>
@@ -167,16 +166,16 @@ include("sesion/controles.php");
                             <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
                                     <legend class="text-center">Sobre nosotros</legend>
-                                        <label for="titulo">Titulo:</label>
-                                        <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_nosotros";?>" name="titulo">                  
-                                        </br>
-                                        <label for="texto">Texto:</label>
-                                        <input type="text" class="form-control" id="texto" value="<?php echo "$txt_nosotros";?>" name="texto"> 
-                                        </br>
-                                        <label for="imagen">Imagen:</label>
-                                        <input type="file" class="form-control" id="imagen" name="imagen" size="30"/>
-                                        </br>
-                                        <input type="submit" name="nosotros" value="Modificar Sobre Nosotros" class="btn btn-sm btn-primary mx-auto text-center" type="button"/>
+                                    <label for="titulo">Titulo:</label>
+                                    <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_nosotros"; ?>" name="titulo">                  
+                                    </br>
+                                    <label for="texto">Texto:</label>
+                                    <input type="text" class="form-control" id="texto" value="<?php echo "$txt_nosotros"; ?>" name="texto"> 
+                                    </br>
+                                    <label for="imagen">Imagen:</label>
+                                    <input type="file" class="form-control" id="imagen" name="imagen" size="30"/>
+                                    </br>
+                                    <input type="submit" name="nosotros" value="Modificar Sobre Nosotros" class="btn btn-sm btn-primary mx-auto text-center" type="button"/>
                                 </fieldset>
                             </form>
                         </div>
@@ -206,31 +205,31 @@ include("sesion/controles.php");
                             </form>
                         </div>
                         <?php
-                        $consulta = "select * from servicios;";
-                        $resultado = mysqli_query($con, $consulta);
-                        $num_filas = mysqli_num_rows($resultado);
-                        while ($fila = mysqli_fetch_array($resultado)) {
+                        $consultaServicios = "select * from servicios;";
+                        $resultadoServicios = mysqli_query($con, $consultaServicios);
+                        while ($fila = mysqli_fetch_array($resultadoServicios)) {
                             extract($fila);
-                        echo"<div class='form-group col-xl-6 col-lg-6'>";
+                            echo"<div class='form-group col-xl-6 col-lg-6'>";
                             echo"<form method='post' action='dao/servicios_dao.php' enctype='multipart/form-data'>";
-                                echo"<fieldset>";
-                                    echo"<legend class='text-center'>Modificar Servicio</legend>";
-                                        echo "<input type='hidden' value='$id' name='id'>";
-                                        echo "<label for='titulo'>Titulo:</label>";
-                                        echo"<input type='text' class='form-control' id='titulo' value='$txt_titulo' name='titulo' maxlength='50'>";                
-                                        echo"</br>";
-                                        echo"<label for='texto'>Texto:</label>";
-                                        echo"<input type='text' class='form-control' id='texto' value='$txt_texto' name='texto' maxlength='500'>";
-                                        echo"</br>";
-                                        echo"<label for='imagen'>Imagen:</label>";
-                                        echo"<input type='file' class='form-control' id='imagen' name='imagen' size='30'/>";
-                                        echo"</br>";
-                                        echo"<div class='text-center'><div class='btn-group justify-content-center'><input type='submit' name='modificar' value='Modificar Servicio' class='btn btn-sm btn-primary mx-auto text-center' type='button'/>";
-                                        echo"<input type='submit' name='eliminar' value='Eliminar Servicio' class='btn btn-sm btn-danger mx-auto text-center' type='button'/></div></div>";
-                                echo"</fieldset>";
+                            echo"<fieldset>";
+                            echo"<legend class='text-center'>Modificar Servicio</legend>";
+                            echo "<input type='hidden' value='$id' name='id'>";
+                            echo "<label for='titulo'>Titulo:</label>";
+                            echo"<input type='text' class='form-control' id='titulo' value='$txt_titulo' name='titulo' maxlength='50'>";
+                            echo"</br>";
+                            echo"<label for='texto'>Texto:</label>";
+                            echo"<input type='text' class='form-control' id='texto' value='$txt_texto' name='texto' maxlength='500'>";
+                            echo"</br>";
+                            echo"<label for='imagen'>Imagen:</label>";
+                            echo"<input type='file' class='form-control' id='imagen' name='imagen' size='30'/>";
+                            echo"</br>";
+                            echo"<div class='text-center'><div class='btn-group justify-content-center'><input type='submit' name='modificar' value='Modificar Servicio' class='btn btn-sm btn-primary mx-auto text-center' type='button'/>";
+                            echo"<input type='submit' name='eliminar' value='Eliminar Servicio' class='btn btn-sm btn-danger mx-auto text-center' type='button'/></div></div>";
+                            echo"</fieldset>";
                             echo"</form>";
-                        echo"</div>";
-                        }?>
+                            echo"</div>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -243,33 +242,33 @@ include("sesion/controles.php");
                                 <fieldset>
                                     <legend class="text-center">Datos</legend>
                                     <input type='hidden' value='datos' name='seccion'>
-                                        <label for="Direccion">Direccion:</label>
-                                        <input type="text" class="form-control" id="direccion" value="<?php echo "$direccion";?>" name="direccion">                  
-                                        </br>
-                                        <label for="texto">Url google maps:</label>
-                                        <input type="text" class="form-control" id="mapa" value="<?php echo "$url_direccion";?>" name="url_direccion"> 
-                                        </br>
-                                        <label for="email">Email:</label>
-                                        <input type="text" class="form-control" id="email" value="<?php echo "$email";?>" name="email"> 
-                                        </br>
-                                        <label for="telefono">Telefono:</label>
-                                        <input type="text" class="form-control" id="telefono" value="<?php echo "$telefono";?>" name="telefono">                                  
+                                    <label for="Direccion">Direccion:</label>
+                                    <input type="text" class="form-control" id="direccion" value="<?php echo "$direccion"; ?>" name="direccion">                  
+                                    </br>
+                                    <label for="texto">Url google maps:</label>
+                                    <input type="text" class="form-control" id="mapa" value="<?php echo "$url_direccion"; ?>" name="url_direccion"> 
+                                    </br>
+                                    <label for="email">Email:</label>
+                                    <input type="text" class="form-control" id="email" value="<?php echo "$email"; ?>" name="email"> 
+                                    </br>
+                                    <label for="telefono">Telefono:</label>
+                                    <input type="text" class="form-control" id="telefono" value="<?php echo "$telefono"; ?>" name="telefono">                                  
                                 </fieldset>
                         </div>
                         <div class='col-xl-6 col-lg-6'> 
-                                <fieldset>
-                                    <legend class="text-center">Redes Sociales</legend>
-                                        <label for="Direccion">Linked In:</label>
-                                        <input type="text" class="form-control" id="linkedin" value="<?php echo "$url_linkedin";?>" name="url_linkedin">                  
-                                        </br>
-                                        <label for="texto">Facebook:</label>
-                                        <input type="text" class="form-control" id="facebook" value="<?php echo "$url_facebook";?>" name="url_facebook"> 
-                                        </br>
-                                        <label for="email">Instagram:</label>
-                                        <input type="text" class="form-control" id="instagram" value="<?php echo "$url_instagram";?>" name="url_instagram"> 
-                                        </br>
-                                        <input type="submit" name="modificar" value="Modificar datos" class="btn btn-primary center-block" type="button"/>
-                                </fieldset>
+                            <fieldset>
+                                <legend class="text-center">Redes Sociales</legend>
+                                <label for="Direccion">Linked In:</label>
+                                <input type="text" class="form-control" id="linkedin" value="<?php echo "$url_linkedin"; ?>" name="url_linkedin">                  
+                                </br>
+                                <label for="texto">Facebook:</label>
+                                <input type="text" class="form-control" id="facebook" value="<?php echo "$url_facebook"; ?>" name="url_facebook"> 
+                                </br>
+                                <label for="email">Instagram:</label>
+                                <input type="text" class="form-control" id="instagram" value="<?php echo "$url_instagram"; ?>" name="url_instagram"> 
+                                </br>
+                                <input type="submit" name="modificar" value="Modificar datos" class="btn btn-primary mx-auto text-center" type="button"/>
+                            </fieldset>
                             </form>
                         </div>
                     </div>                  
@@ -277,11 +276,13 @@ include("sesion/controles.php");
             </div>
         </div>
     </body>
-    <script> 
+    <script>
         <?php
-        if($_SESSION['mensaje'] != ""){
-            echo "alert('".$_SESSION['mensaje']."')";
+        if ($_SESSION['mensaje'] != "") {
+            echo "alert('" . $_SESSION['mensaje'] . "')";
             $_SESSION['mensaje'] = "";
-        }?>
+        }
+        ?>
     </script>
 </html>
+        
