@@ -16,14 +16,14 @@
 }
 
 .cabecera h1 {
-  font-size: 4.5rem;
+  font-size: 5rem;
   line-height: 4.5rem;
   letter-spacing: 0.5rem;
 }
 
  .cabecera h2 {
    max-width: 30rem;
-   font-size: 2rem;
+   font-size: 3rem;
   }
   
 .seccion-nosotros {
@@ -109,6 +109,14 @@ a:hover {
   background-color: #161616 !important;
 }
 
+.bg-blue{
+ background-color: #1b5594;
+}
+
+.bg-grey{
+ background-color: #212529; 
+}
+
 .btn {
   padding: 0.5rem 1rem;
   font-family: 'arial';
@@ -142,7 +150,7 @@ a:hover {
 }
 
 .tab-content {
-    padding-top: 1rem;
+    padding-top: 1.3rem;
   }
 }
 

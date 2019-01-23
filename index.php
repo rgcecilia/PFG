@@ -29,7 +29,7 @@ extract($fila);
         <meta name="autores" content="Rgc & Mmp">
         <title>Ladron de Guevara</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet"> 
         <script src="js/jquery-3.2.1.slim.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

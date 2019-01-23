@@ -26,7 +26,7 @@ include("sesion/conexion.php");
         <meta charset="UTF-8">
         <title>Administracion</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet"> 
         <script src="js/jquery-3.2.1.slim.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -80,6 +80,7 @@ include("sesion/conexion.php");
             </div>
             <div class="tab-pane fade admin" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
                 <div class="container">
+                    <h2 class="text-center bg-grey text-white">Gestión de Usuarios</h2>
                     <div class="row">
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='POST' action='dao/usuarios_dao.php'>
@@ -90,7 +91,7 @@ include("sesion/conexion.php");
                                 extract($filaDatos);
                                 ?>
                                 <fieldset>
-                                    <legend class="text-center">Crear Usuario</legend>
+                                    <legend class="text-center bg-blue text-white">Crear Usuario</legend>
                                     </br>
                                     <label for="dni">Dni:</label>
                                     <input class="form-control" type='text' name='dni' maxlength='9' minlength='9' placeholder="Documento nacional de identidad" /> 
@@ -108,7 +109,7 @@ include("sesion/conexion.php");
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
-                                    <legend class="text-center">Eliminar Usuario</legend>
+                                    <legend class="text-center bg-blue text-white">Eliminar Usuario</legend>
                                     </br>
                                     <label for="Usuario">Usuario:</label>
                                     <select name='dni' class='form-control'>
@@ -130,7 +131,7 @@ include("sesion/conexion.php");
                         <div class="form-group col-xl-4 col-lg-4">
                             <form method='post' action='dao/usuarios_dao.php'>
                                 <fieldset>
-                                    <legend class="text-center">Modificar Usuario</legend>
+                                    <legend class="text-center bg-blue text-white">Modificar Usuario</legend>
                                     </br>
                                     <label for="Usuario">Usuario:</label>
                                     <select name='dni' class='form-control'>
@@ -160,12 +161,12 @@ include("sesion/conexion.php");
             </div>             
             <div class="tab-pane fade admin" id="contenido" role="tabpanel" aria-labelledby="contenido-tab">
                 <div class="container">
-                    <h2 class="text-center">Contenido</h2>
+                    <h2 class="text-center bg-grey text-white">Contenido Estático</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>            
                             <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
-                                    <legend class="text-center">Inicio</legend>
+                                    <legend class="text-center bg-blue text-white">Sección Inicio</legend>
                                     <label for="titulo">Titulo:</label>
                                     <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_inicio"; ?>" name="titulo">                  
                                     </br>
@@ -182,7 +183,7 @@ include("sesion/conexion.php");
                         <div class="form-group col-xl-6 col-lg-6">
                             <form method='post' action='dao/contenido_dao.php' enctype="multipart/form-data">
                                 <fieldset>
-                                    <legend class="text-center">Sobre nosotros</legend>
+                                    <legend class="text-center bg-blue text-white">Sobre nosotros</legend>
                                     <label for="titulo">Titulo:</label>
                                     <input type="text" class="form-control" id="titulo" value="<?php echo "$titulo_nosotros"; ?>" name="titulo">                  
                                     </br>
@@ -201,12 +202,12 @@ include("sesion/conexion.php");
             </div>
             <div class="tab-pane fade admin" id="servicios" role="tabpanel" aria-labelledby="servicios-tab">
                 <div class="container">
-                    <h2 class="text-center">Servicios</h2>
+                    <h2 class="text-center bg-grey text-white">Servicios Dinámicos</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>
                             <form method='post' action='dao/servicios_dao.php' enctype='multipart/form-data'>
                                 <fieldset>
-                                    <legend class='text-center'>Crear Servicio Nuevo</legend>
+                                    <legend class='text-center bg-blue text-white'>Crear Servicio Nuevo</legend>
                                     <input type='hidden' value='servicios' name='seccion'>
                                     <label for='titulo'>Titulo:</label>
                                     <input type='text' class='form-control' id='titulo' name='titulo' maxlength='50'>                
@@ -229,7 +230,7 @@ include("sesion/conexion.php");
                             echo"<div class='form-group col-xl-6 col-lg-6'>";
                             echo"<form method='post' action='dao/servicios_dao.php' enctype='multipart/form-data'>";
                             echo"<fieldset>";
-                            echo"<legend class='text-center'>Modificar Servicio</legend>";
+                            echo"<legend class='text-center bg-blue text-white'>Modificar Servicio</legend>";
                             echo "<input type='hidden' value='$id' name='id'>";
                             echo "<label for='titulo'>Titulo:</label>";
                             echo"<input type='text' class='form-control' id='titulo' value='$txt_titulo' name='titulo' maxlength='50'>";
@@ -252,12 +253,12 @@ include("sesion/conexion.php");
             </div>
             <div class="tab-pane fade admin" id="datos" role="tabpanel" aria-labelledby="datos-tab">
                 <div class="container">
-                    <h2 class="text-center">Datos</h2>
+                    <h2 class="text-center bg-grey text-white">Datos de contacto</h2>
                     <div class="row">
                         <div class='form-group col-xl-6 col-lg-6'>   
                             <form method='post' action='dao/datos_dao.php'>
                                 <fieldset>
-                                    <legend class="text-center">Datos</legend>
+                                    <legend class="text-center bg-blue text-white">Localización</legend>
                                     <input type='hidden' value='datos' name='seccion'>
                                     <label for="Direccion">Direccion:</label>
                                     <input type="text" class="form-control" id="direccion" value="<?php echo "$direccion"; ?>" name="direccion">                  
@@ -274,7 +275,7 @@ include("sesion/conexion.php");
                         </div>
                         <div class='col-xl-6 col-lg-6'> 
                             <fieldset>
-                                <legend class="text-center">Redes Sociales</legend>
+                                <legend class="text-center bg-blue text-white">Redes Sociales</legend>
                                 <label for="Direccion">Linked In:</label>
                                 <input type="text" class="form-control" id="linkedin" value="<?php echo "$url_linkedin"; ?>" name="url_linkedin">                  
                                 </br>
